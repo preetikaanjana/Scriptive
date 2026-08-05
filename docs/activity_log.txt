@@ -6,3 +6,4 @@
 [ 2026-08-05 23:52:43 ] Optimizing Otsu histogram bins
 [ 2026-08-05 23:52:45 ] Improving parchment texture blending ratios
 [ 2026-08-05 23:54:20 ] Calibrating baseline jitter thresholds
+[ 2026-08-05 23:54:22 ] Adjusting dynamic kerning width factors
