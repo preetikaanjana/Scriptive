@@ -1,0 +1,524 @@
+import { 
+    PenTool, Download, Type, ArrowRight,
+    Github, Linkedin, Twitter, Mail
+} from 'lucide-react';
+import React, { useRef, useEffect } from 'react';
+import { motion, type Variants, useInView } from 'framer-motion';
+import EditorPage from './EditorPage';
+import { useStore } from '../lib/store';
+const photo = '/profile_preetika.jpg';
+
+export default function LandingPage() {
+    const editorRef = useRef<HTMLDivElement>(null);
+    const setNavbarVisible = useStore(state => state.setNavbarVisible);
+    
+    // Detect if editor is in focus
+    const isEditorInView = useInView(editorRef, { 
+        amount: 0.2, // Trigger when 20% of section is visible
+        margin: "-100px 0px -100px 0px"
+    });
+
+    useEffect(() => {
+        // Sync global navbar visibility with editor presence
+        setNavbarVisible(!isEditorInView);
+        
+        return () => {
+            // Restore navbar on unmount
+            setNavbarVisible(true);
+        };
+    }, [isEditorInView, setNavbarVisible]);
+
+    const scrollToEditor = () => editorRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.3
+            }
+        }
+    };
+
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 30, scale: 0.98 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 0.5,
+                ease: [0.16, 1, 0.3, 1]
+            }
+        }
+    };
+
+    return (
+        <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="min-h-screen selection:bg-indigo-500/30 relative overflow-x-hidden"
+        >
+
+            
+            {/* --- HERO SECTION --- */}
+            <HeroSection />
+
+                <motion.section 
+                    variants={itemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    ref={editorRef} 
+                    id="editor" 
+                    className="relative z-20 py-20 sm:py-24 md:py-32"
+                >
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                        <div className="mb-8 sm:mb-12 md:mb-16 text-center">
+                            <span className="text-indigo-500 font-black tracking-[0.3em] uppercase text-[10px] mb-4 block">The Workshop</span>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-neutral-900">Your Digital Canvas</h2>
+                        </div>
+                        <div>
+                            <EditorPage />
+                        </div>
+                    </div>
+                </motion.section>
+
+
+            {/* --- BENTO GRID FEATURES --- */}
+            <motion.section 
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                className="py-20 sm:py-24 md:py-32 relative"
+            >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div className="mb-10 sm:mb-16 md:mb-20 text-center max-w-2xl mx-auto">
+                        <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs mb-4 block">
+                            Why Choose Handwritten?
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-neutral-900 mb-6 leading-tight">
+                            The Search for the <br className="hidden sm:block"/>
+                            <span className="italic font-serif text-neutral-600">Perfect Hand-Written Look.</span>
+                        </h2>
+                        <p className="text-neutral-500 text-lg sm:text-xl font-medium max-w-xl mx-auto">
+                            Transforming text to handwriting shouldn't feel robotic. Our platform uses advanced algorithms to ensure every letter feels unique, organic, and truly personal.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:grid-rows-2 h-auto md:h-[600px] min-h-[900px] md:min-h-0">
+                        {/* Large Card: Advanced Simulation Engine */}
+                        <motion.div 
+                            variants={itemVariants}
+                            className="md:col-span-2 md:row-span-2"
+                        >
+                            <motion.div 
+                                whileHover={{ 
+                                    y: -8,
+                                    rotateX: 2,
+                                    rotateY: -2,
+                                    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                                }}
+                                style={{ perspective: '1000px' }}
+                                className="h-full bg-white rounded-[3rem] relative overflow-hidden isolate shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08),0_4px_12px_-4px_rgba(0,0,0,0.02)] border border-neutral-100/50 flex flex-col"
+                            >
+                                {/* Textured Background */}
+                                <div className="absolute inset-0 mesh-gradient opacity-[0.08] group-hover:opacity-[0.12] transition-opacity duration-500" />
+                                <div className="absolute inset-0 noise-bg opacity-[0.03]" />
+                                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50/50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+                                
+                                <div className="relative z-10 p-10 sm:p-14 h-full flex flex-col justify-start gap-10">
+                                    <div className="w-20 h-20 glass rounded-4xl flex items-center justify-center shadow-premium ring-1 ring-black/5 shrink-0 group-hover:scale-110 transition-transform duration-500">
+                                        <PenTool className="text-indigo-600" size={32} />
+                                    </div>
+                                    <div className="max-w-md relative z-20">
+                                        <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6 text-neutral-900 tracking-tight leading-[1.1]">
+                                            Advanced Simulation <span className="text-indigo-600/80">Engine</span>
+                                        </h3>
+                                        <p className="text-neutral-500 text-lg sm:text-xl leading-relaxed font-medium">
+                                            Total control over your handwriting's soul. Fine-tune organic <b className="text-neutral-900 font-bold border-b-2 border-indigo-100 pb-0.5">Jitter</b>, <b className="text-neutral-900 font-bold border-b-2 border-indigo-100 pb-0.5">Pressure</b>, and <b className="text-neutral-900 font-bold border-b-2 border-indigo-100 pb-0.5">Smudge</b> levels.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                {/* Visual Decoration - Enhanced Paper Stack */}
+                                <div className="absolute right-0 bottom-0 w-3/5 h-3/5 translate-x-8 translate-y-8 hidden lg:block pointer-events-none z-10">
+                                    <div className="relative w-full h-full">
+                                        {/* Back Paper */}
+                                        <div className="absolute inset-0 bg-neutral-50 rounded-tl-[3.5rem] shadow-sm transform rotate-6 translate-x-4 translate-y-4 border border-neutral-100" />
+                                        {/* Middle Paper */}
+                                        <div className="absolute inset-0 bg-neutral-100/50 rounded-tl-[3.5rem] shadow-md transform rotate-3 translate-x-2 translate-y-2 border border-neutral-100" />
+                                        {/* Front Paper (Main) */}
+                                        <motion.div 
+                                            initial={{ rotate: 0, y: 40, opacity: 0 }}
+                                            animate={{ rotate: -4, y: 0, opacity: 1 }}
+                                            transition={{ delay: 0.6, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                                            className="absolute inset-0 bg-white rounded-tl-[3.5rem] shadow-premium p-8 border border-neutral-100 overflow-hidden"
+                                        >   
+                                            <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[24px_24px] opacity-40" />
+                                            <div className="w-full h-full flex items-center justify-center text-center p-8 relative z-10">
+                                                <span className="font-handwriting text-3xl sm:text-4xl text-neutral-800 leading-relaxed mix-blend-multiply opacity-90 block max-w-[280px]">
+                                                    "The details are not the details. They make the design."
+                                                </span>
+                                            </div>
+                                            {/* Corner shadow for depth */}
+                                            <div className="absolute inset-0 bg-linear-to-tr from-black/2 via-transparent to-transparent pointer-events-none" />
+                                        </motion.div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Top Right: Export Anywhere (Matched to Reference) */}
+                        <motion.div 
+                            variants={itemVariants}
+                            className="h-full"
+                        >
+                            <motion.div 
+                                whileHover={{ 
+                                    y: -8,
+                                    rotateX: 2,
+                                    rotateY: 2,
+                                    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                                }}
+                                style={{ perspective: '1000px' }}
+                                className="h-full bg-linear-to-br from-[#0B0F19] to-[#1E293B] text-white rounded-4xl p-10 relative overflow-hidden isolate shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3),0_10px_20px_-10px_rgba(0,0,0,0.2)] flex flex-col ring-1 ring-white/5"
+                            >
+                                {/* Animated Glows - Refined to match image subtle feel */}
+                                <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/15 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 group-hover:bg-indigo-500/25 transition-colors duration-700" />
+                                <div className="absolute bottom-0 left-0 w-60 h-60 bg-purple-500/5 rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4" />
+                                
+                                <div className="relative z-10 flex flex-col justify-between h-full">
+                                    <div className="relative">
+                                        <div className="absolute inset-0 bg-indigo-400/10 blur-2xl rounded-full scale-150 animate-pulse-slow" />
+                                        <div className="relative w-16 h-16 glass rounded-2xl flex items-center justify-center mb-8 ring-1 ring-white/10 shadow-premium group-hover:scale-110 transition-transform duration-500">
+                                            <Download className="text-white/80" size={28} />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-3xl font-bold mb-4 font-display tracking-tight leading-tight text-white">
+                                            Export <span className="text-[#A5B4FC]">Anywhere</span>
+                                        </h3>
+                                        <p className="text-white/60 text-lg leading-relaxed font-medium">
+                                            Convert your work into high-fidelity <span className="text-white">PDF documents</span> or high-res <span className="text-white">PNGs</span>.
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Bottom Right: AI Humanizer (Soft Elegant) */}
+                        <motion.div 
+                            variants={itemVariants}
+                            className="h-full"
+                        >
+                            <motion.div 
+                                whileHover={{ 
+                                    y: -8,
+                                    rotateX: -2,
+                                    rotateY: 2,
+                                    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                                }}
+                                style={{ perspective: '1000px' }}
+                                className="h-full bg-white rounded-[3rem] p-10 relative overflow-hidden isolate shadow-[0_25px_60px_-15px_rgba(0,0,0,0.06),0_5px_15px_-5px_rgba(0,0,0,0.02)] border border-neutral-100/50 flex flex-col"
+                            >
+                                <div className="absolute inset-0 bg-linear-to-tr from-rose-50/60 via-transparent to-transparent opacity-80" />
+                                <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-rose-100/30 rounded-full blur-3xl animate-blob" />
+                                
+                                <div className="relative z-10 flex flex-col justify-between h-full">
+                                    <div className="w-16 h-16 bg-rose-50/50 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-8 ring-1 ring-rose-100 shadow-sm group-hover:scale-110 transition-transform duration-500">
+                                        <Type className="text-rose-500" size={28} />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold mb-4 text-neutral-900 font-display tracking-tight">AI Humanizer</h3>
+                                        <p className="text-neutral-500 text-base leading-relaxed font-medium">
+                                            Tap into <span className="text-neutral-900 font-semibold italic">AI Humanizer</span> to rewrite notes into organic, natural human prose.
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
+
+
+            <AboutSection />
+
+            {/* --- CALL TO ACTION --- */}
+            <motion.div variants={itemVariants}>
+                <section className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
+                    <div className="max-w-3xl mx-auto text-center relative z-10">
+                        <motion.div 
+                            whileHover={{ scale: 1.01 }}
+                            className="bg-neutral-900 text-white rounded-4xl p-8 sm:p-12 md:p-16 shadow-2xl relative overflow-hidden isolate border border-white/5"
+                        >
+                            {/* Abstract BG */}
+                            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+                            <motion.div 
+                                animate={{ 
+                                    scale: [1, 1.05, 1],
+                                    opacity: [0.1, 0.15, 0.1]
+                                }}
+                                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[60px] sm:blur-[100px]" 
+                                style={{ willChange: 'transform, opacity' }}
+                            />
+
+                            <div className="relative z-10 py-4">
+                                <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black mb-4 sm:mb-6 tracking-tighter leading-[1.1] text-white">
+                                    <span className="text-white">Start your</span> <br/>
+                                    <motion.span 
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.8, duration: 1 }}
+                                        className="font-serif italic text-[#A5B4FC] text-[0.85em] block sm:inline-block mt-2 sm:mt-0"
+                                    >masterpiece.</motion.span>
+                                </h2>
+                                <p className="text-base md:text-lg text-white/40 mb-10 max-w-lg mx-auto font-medium">
+                                    No signup required for basic use. Jump right in and feel the difference.
+                                </p>
+                                <motion.button
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={scrollToEditor}
+                                    className="px-10 py-4 bg-white text-neutral-900 rounded-full font-bold text-base hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.3)] transition-all flex items-center gap-3 mx-auto group ring-1 ring-white/10"
+                                >
+                                    <span>Launch Editor</span>
+                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                </motion.button>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            </motion.div>
+
+        </motion.div>
+    );
+}
+
+const HeroSection = React.memo(() => {
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 40, scale: 0.95 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1]
+            }
+        }
+    };
+
+    // Floating elements with animations - Enriched for Mobile
+    const floatingElements = [
+        { icon: '✒️', x: 'left-4 sm:left-[5%]', y: 'top-[15%] sm:top-[12%]', size: 'text-6xl sm:text-7xl', duration: 20, delay: 0 },
+        { icon: '📝', x: 'left-[3%]', y: 'top-[35%]', size: 'text-4xl sm:text-6xl', duration: 15, delay: 2 },
+        { icon: '🖋️', x: 'right-4 sm:right-[5%]', y: 'top-[12%] sm:top-[10%]', size: 'text-6xl sm:text-7xl', duration: 25, delay: 1 },
+        { icon: '💫', x: 'right-[8%]', y: 'top-[30%]', size: 'text-4xl sm:text-6xl', duration: 18, delay: 3 },
+        { icon: '📄', x: 'left-[2%]', y: 'top-[50%]', size: 'text-6xl', duration: 22, delay: 4 },
+        { icon: '📖', x: 'right-[2%]', y: 'top-[48%]', size: 'text-6xl', duration: 19, delay: 2 },
+        { icon: '🖊️', x: 'left-4 sm:left-[5%]', y: 'bottom-[15%] sm:bottom-[10%]', size: 'text-6xl sm:text-7xl', duration: 21, delay: 5 },
+        { icon: '✏️', x: 'left-[3%]', y: 'bottom-[28%]', size: 'text-4xl sm:text-6xl', duration: 17, delay: 0 },
+        { icon: '🎭', x: 'right-4 sm:right-[5%]', y: 'bottom-[15%] sm:bottom-[10%]', size: 'text-6xl sm:text-7xl', duration: 23, delay: 1 },
+        { icon: '💡', x: 'right-[12%]', y: 'bottom-[35%]', size: 'text-4xl sm:text-6xl', duration: 20, delay: 3 },
+    ];
+
+    return (
+        <motion.section 
+            variants={itemVariants}
+            className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden"
+        >
+            {/* Background Glow */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                <div className="w-full max-w-7xl h-full relative">
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 2, ease: "easeOut" }}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-100/30 rounded-full blur-[60px] sm:blur-[140px]" 
+                        style={{ willChange: 'transform, opacity' }}
+                    />
+                </div>
+            </div>
+
+            {/* Floating Decorative Elements */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {floatingElements.map((el, index) => (
+                    <motion.div
+                        key={index}
+                        initial={{ y: 0 }}
+                        animate={{ 
+                            y: [0, -20, 0],
+                            rotate: [0, index % 2 === 0 ? 10 : -10, 0]
+                        }}
+                        transition={{
+                            duration: el.duration,
+                            repeat: Infinity,
+                            delay: el.delay,
+                            ease: "easeInOut"
+                        }}
+                        className={`absolute ${el.x} ${el.y} ${el.size} opacity-60`}
+                        style={{ 
+                            filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.03))',
+                            willChange: 'transform'
+                        }}
+                    >
+                        {el.icon}
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Main Content */}
+            <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="relative z-10 flex flex-col items-center justify-center w-full max-w-6xl py-32"
+            >
+                <div className="text-center pb-12 relative">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[120%] bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none" />
+
+                    <div className="flex flex-col items-center">
+                        <motion.h1 
+                            variants={itemVariants}
+                            className="text-5xl sm:text-9xl lg:text-[11rem] font-display font-bold leading-none tracking-tighter text-black mb-4"
+                            style={{ willChange: 'transform, opacity' }}
+                        >
+                            Preetika.
+                        </motion.h1>
+                        <motion.h2 
+                            variants={itemVariants}
+                            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic text-black leading-tight"
+                        >
+                            Text to Handwriting Converter
+                        </motion.h2>
+                    </div>
+                </div>
+            </motion.div>
+        </motion.section>
+    );
+});
+
+HeroSection.displayName = "HeroSection";
+
+const AboutSection = React.memo(() => {
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 40, scale: 0.95 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1]
+            }
+        }
+    };
+
+    return (
+        <motion.section 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            id="about"
+            className="relative py-20 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden"
+        >
+             <div className="max-w-7xl mx-auto relative z-10">
+                <motion.div variants={itemVariants} className="mb-20 text-center max-w-2xl mx-auto">
+                    <span className="text-indigo-500 font-bold tracking-widest uppercase text-xs mb-4 block">The Creator</span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-neutral-900">Behind the Ink</h2>
+                </motion.div>
+
+                <div className="relative w-full max-w-6xl mx-auto">
+                    <motion.div variants={itemVariants} className="relative bg-white rounded-2xl sm:rounded-3xl shadow-premium border border-black/5 p-2 md:p-4 overflow-hidden isolate">
+                         <div className="absolute top-6 left-6 flex gap-2 z-20">
+                            <div className="w-3 h-3 rounded-full bg-red-400" />
+                            <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                            <div className="w-3 h-3 rounded-full bg-green-400" />
+                         </div>
+
+                         <div className="w-full bg-[#FAFAFA] rounded-md overflow-hidden relative min-h-[400px] sm:min-h-[500px] flex flex-col md:flex-row">
+                                <div className="w-full md:w-1/3 bg-white border-b md:border-b-0 md:border-r border-black/5 p-6 sm:p-8 flex flex-col items-center pt-10 sm:pt-16 md:pt-20">
+                                    <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8">
+                                    <div className="absolute inset-0 bg-accent/10 rounded-full blur-2xl transform translate-y-4" />
+                                    <img src={photo} alt="Preetika Anjana" className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl relative z-10" />
+                                    <div className="absolute bottom-4 right-4 z-20 bg-white p-2 rounded-full shadow-md"><span className="text-2xl">👋</span></div>
+                                </div>
+                                <h3 className="font-display font-bold text-2xl text-ink mb-1">Preetika Anjana</h3>
+                                <p className="text-xs font-black tracking-widest uppercase text-ink/40 mb-8">Developer & Designer</p>
+                                <div className="flex gap-4">
+                                    <SocialLink href="https://github.com/preetikaanjana" icon={Github} />
+                                    <SocialLink href="https://www.linkedin.com/in/preetikaanjana/" icon={Linkedin} />
+                                    <SocialLink href="https://x.com/preetikaanjana" icon={Twitter} />
+                                    <SocialLink href="mailto:preetikaanjana@gmail.com" icon={Mail} />
+                                </div>
+                            </div>
+
+                             <div className="flex-1 p-8 md:p-16 bg-[radial-gradient(#00000005_1px,transparent_1px)] bg-size-[16px_16px]">
+                                  <div className="max-w-2xl mx-auto space-y-8">
+                                     <motion.div variants={itemVariants} className="bg-white p-8 rounded-3xl shadow-premium border border-black/5">
+                                         <h4 className="font-bold text-ink mb-4 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-accent" /> About Me</h4>
+                                         <p className="text-ink/70 leading-relaxed font-serif text-lg">
+                                             I am a developer and designer with a passion for building aesthetic, user-centric interfaces. I love combining modern web technologies with elegant visual design to turn ideas into reality.
+                                         </p>
+                                     </motion.div>
+                                     <motion.div variants={itemVariants} className="bg-white p-8 rounded-3xl shadow-premium border border-black/5">
+                                         <h4 className="font-bold text-ink mb-4 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-rose-400" /> Philosophy</h4>
+                                         <p className="text-ink/70 leading-relaxed font-serif text-lg">
+                                             I focus on making things that look great and work even better. Coding isn't just about logic—it's about creating something that feels <span className="font-handwriting text-2xl mx-2 text-accent">human</span>.
+                                         </p>
+                                     </motion.div>
+                                  </div>
+                             </div>
+                         </div>
+                    </motion.div>
+                </div>
+             </div>
+        </motion.section>
+    );
+});
+
+AboutSection.displayName = "AboutSection";
+
+const SocialLink = React.memo(({ href, icon: Icon }: { href: string, icon: React.ElementType }) => {
+    return (
+        <a 
+            href={href} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="w-10 h-10 glass rounded-full flex items-center justify-center text-ink/60 hover:text-ink transition-all shadow-premium hover:scale-110 hover:-translate-y-1"
+        >
+            <Icon size={18} />
+        </a>
+    );
+});
+
+SocialLink.displayName = "SocialLink";
