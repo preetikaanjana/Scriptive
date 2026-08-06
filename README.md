@@ -1,34 +1,33 @@
 <div align="center">
 
-# 🖋️ Handwritten
+# 🖋️ Scriptive
 
-<img src="public/images/logo.png" alt="Handwritten Logo" width="160" />
+<img src="public/images/logo.png" alt="Scriptive Logo" width="160" />
 
 ### Transform digital text into organic, human-like handwriting instantly.
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel&logoColor=white)](https://handwritten-git.vercel.app)
-[![Version](https://img.shields.io/badge/Version-2.0.0-indigo.svg?style=flat-square)](CHANGELOG.md)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-2.0.1-indigo.svg?style=flat-square)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 [![Security Policy](https://img.shields.io/badge/Security-Policy-blue.svg?style=flat-square)](SECURITY.md)
-
-**[Launch the Workshop](https://handwritten-git.vercel.app)** • **[Features](https://handwritten-git.vercel.app/features)** • **[How it Works](https://handwritten-git.vercel.app/how-it-works)**
 
 </div>
 
 ---
 
-## 🎨 What is Handwritten?
+## 🎨 What is Scriptive?
 
-**Handwritten** is a high-performance web application that leverages procedural rendering and AI to convert typed text into realistic, organic handwriting. Version 2.0, the **"Atmospheric Update"**, introduces a premium visual layer and a sophisticated rendering engine that ensures every character feels uniquely human.
+**Scriptive** is a high-performance web application that leverages procedural rendering and local computer vision to convert typed text into realistic, organic handwriting. 
 
-### 🌟 Key Features (v2.0)
+It introduces a custom **Image-Based Glyph Stitching Engine** that draws individual transparent character PNG assets (supporting multiple variants per letter) directly onto the canvas. It also features horizontal spacing variation, baseline jitter, and composite multiply ink blending to make digital notes indistinguishable from real handwriting.
 
-- **Atmospheric Rendering Engine**: A unified visual system featuring fluid mesh gradients and a subtle micro-dot grid for a premium aesthetic.
-- **Premium 3D Depth**: Multi-layered shadow systems and elevation markers that provide a tangible sense of hierarchy.
-- **AI Humanization Engine**: Integrated with OpenAI's GPT-4o-mini via OpenRouter to inject natural phrasing and spontaneous "human" rhythm into your text.
-- **Deterministic Randomness**: Characters are offset dynamically using hash seeds, ensuring stylistic consistency across sessions.
-- **High-Fidelity Export**: Seamlessly export your creations as multi-page PDFs or high-resolution image ZIPs, all processed locally for maximum privacy.
+### 🌟 Key Features
+
+- **Custom Image-Based Glyph Stitching**: Renders handwriting by drawing pre-cropped character PNGs (`ctx.drawImage`) instead of static digital fonts, ensuring maximum realism.
+- **Multi-Variant Glyph Support**: Dynamically cycles through 3 different visual variations for every letter, preventing identical character repetition.
+- **Dynamic Kerning & Word Wrapping**: Measures exact cropped bounding box dimensions of character assets to determine natural spacing and line-wraps inside paper margins.
+- **Ink & Paper Blending**: Employs `multiply` composite blending so ink pigments naturally merge with ruled notebook lines and paper fiber textures.
+- **Aesthetic Customization**: A premium, warm Pinterest-inspired minimalist layout with control over baseline jitter, pressure, ink tint colors, and smudge effects.
+- **Local & Secure**: All image extraction (Connected Component Analysis + Otsu's thresholding) is performed locally in your browser.
 
 ---
 
@@ -39,8 +38,8 @@ Get your local handwriting workshop running in less than 2 minutes:
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/ArshVermaGit/Handwritten.git
-    cd Handwritten
+    git clone https://github.com/preetikaanjana/Scriptive.git
+    cd Scriptive
     ```
 
 2. **Install Dependencies**
@@ -82,45 +81,21 @@ Get your local handwriting workshop running in less than 2 minutes:
 
 ---
 
-## 🤝 Community & Development
-
-Handwritten is built by the community, for the community. We've made our repository **100% contributor-friendly**.
-
-- 📖 **[Contribution Guide](CONTRIBUTING.md)**: Our standards for code, branching, and PRs.
-- 🛡️ **[Security Policy](SECURITY.md)**: How to report vulnerabilities safely.
-- 📜 **[Code of Conduct](CODE_OF_CONDUCT.md)**: Standards for a healthy community.
-- ❓ **[Support Guide](SUPPORT.md)**: Finding help and asking questions.
-- 📜 **[MIT License](LICENSE)**: Open and free to use.
-
----
-
-## ☕ Support the Project
-
-If you find this tool helpful and want to support its development, consider buying me a coffee! Your support helps keep the project alive and free.
-
-<div align="center">
-    
-<a href="https://www.buymeacoffee.com/ArshVerma">
-  <img src="public/images/buy-me-a-coffee.png" width="200" />
-</a>
-
-</div>
-
 ## 📱 Connect with Me
 
 I'd love to hear your feedback or discuss potential collaborations!
 
 <div align="center">
 
-[![GitHub](https://skillicons.dev/icons?i=github)](https://github.com/ArshVermaGit)
-[![LinkedIn](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/arshvermadev/)
-[![Twitter](https://skillicons.dev/icons?i=twitter)](https://x.com/TheArshVerma)
-[![Gmail](https://skillicons.dev/icons?i=gmail)](mailto:arshverma.dev@gmail.com)
+[![GitHub](https://skillicons.dev/icons?i=github)](https://github.com/preetikaanjana)
+[![LinkedIn](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/preetikaanjana/)
+[![Twitter](https://skillicons.dev/icons?i=twitter)](https://x.com/preetikaanjana)
+[![Gmail](https://skillicons.dev/icons?i=gmail)](mailto:preetikaanjana@gmail.com)
 
 </div>
 
 ---
 
 <p align="center">
-  Built with ❤️ by <strong>Arsh Verma</strong>
+  Built with ❤️ by <strong>Preetika Anjana</strong>
 </p>
