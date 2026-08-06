@@ -293,12 +293,11 @@ export async function uploadHandwritingSheet(file) {
                                         const { minX, maxX, minY, maxY, label, labels } =
                                             compResult;
                                         // Isolate character pixels and measure slant
-                                        let sumX = 0,
-                                            sumY = 0,
-                                            sumX2 = 0,
-                                            sumY2 = 0,
-                                            sumXY = 0,
-                                            count = 0;
+                                         let sumX = 0,
+                                             sumY = 0,
+                                             sumY2 = 0,
+                                             sumXY = 0,
+                                             count = 0;
                                         const isolatedImgData = localCtx.createImageData(w, h);
                                         const isolatedPixels = isolatedImgData.data;
                                         for (let cy = 0; cy < h; cy++) {
@@ -320,11 +319,10 @@ export async function uploadHandwritingSheet(file) {
                                                         (255 - brightness) * 1.5,
                                                     );
                                                     // Accumulate stats for slant estimation
-                                                    sumX += cx;
-                                                    sumY += cy;
-                                                    sumX2 += cx * cx;
-                                                    sumY2 += cy * cy;
-                                                    sumXY += cx * cy;
+                                                     sumX += cx;
+                                                     sumY += cy;
+                                                     sumY2 += cy * cy;
+                                                     sumXY += cx * cy;
                                                     count++;
                                                 } else {
                                                     // Non-character pixels are fully transparent
