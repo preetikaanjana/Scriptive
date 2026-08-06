@@ -9,12 +9,12 @@ export function AuthProvider({ children }) {
         const storedUser = localStorage.getItem('handwritten_user');
         if (storedUser) return JSON.parse(storedUser);
         return {
-            email: 'preetikaanjana@gmail.com',
-            family_name: 'Anjana',
-            given_name: 'Preetika',
-            id: 'owner-preetika',
-            name: 'Preetika Anjana',
-            picture: '/profile_preetika.jpg',
+            email: 'scriptive@gmail.com',
+            family_name: 'Studio',
+            given_name: 'Scriptive',
+            id: 'owner-scriptive',
+            name: 'Scriptive',
+            picture: '/profile_scriptive.jpg',
         };
     });
     const [isAuthModalOpen, setAuthModalOpen] = useState(false);

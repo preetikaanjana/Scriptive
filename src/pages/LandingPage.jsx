@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import EditorPage from './EditorPage';
 import { useStore } from '../lib/store';
-const photo = '/profile_preetika.jpg';
+const photo = '/profile_scriptive.jpg';
 
 export default function LandingPage() {
     const editorRef = useRef(null);
@@ -478,7 +478,7 @@ const HeroSection = React.memo(() => {
                             className="text-5xl sm:text-9xl lg:text-[11rem] font-display font-bold leading-none tracking-tighter text-black mb-4"
                             style={{ willChange: 'transform, opacity' }}
                         >
-                            Preetika.
+                            Scriptive.
                         </motion.h1>
                         <motion.h2
                             variants={itemVariants}
@@ -555,7 +555,7 @@ const AboutSection = React.memo(() => {
                                     <div className="absolute inset-0 bg-accent/10 rounded-full blur-2xl transform translate-y-4" />
                                     <img
                                         src={photo}
-                                        alt="Preetika Anjana"
+                                        alt="Scriptive"
                                         className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl relative z-10"
                                     />
                                     <div className="absolute bottom-4 right-4 z-20 bg-white p-2 rounded-full shadow-md">
@@ -563,7 +563,7 @@ const AboutSection = React.memo(() => {
                                     </div>
                                 </div>
                                 <h3 className="font-display font-bold text-2xl text-ink mb-1">
-                                    Preetika Anjana
+                                    Scriptive
                                 </h3>
                                 <p className="text-xs font-black tracking-widest uppercase text-ink/40 mb-8">
                                     Developer & Designer

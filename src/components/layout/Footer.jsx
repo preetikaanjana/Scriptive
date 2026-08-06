@@ -264,7 +264,7 @@ export default function Footer() {
                             rel="noopener noreferrer"
                             className="text-neutral-900 hover:underline underline-offset-4 font-black"
                         >
-                            Preetika Anjana
+                            Scriptive
                         </a>
                     </p>
                 </div>

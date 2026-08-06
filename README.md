@@ -97,5 +97,5 @@ I'd love to hear your feedback or discuss potential collaborations!
 ---
 
 <p align="center">
-  Built with ❤️ by <strong>Preetika Anjana</strong>
+  Built with ❤️ by <strong>Scriptive</strong>
 </p>

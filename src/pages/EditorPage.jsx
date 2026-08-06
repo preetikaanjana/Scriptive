@@ -513,7 +513,7 @@ export default function EditorPage() {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${openRouterKey}`,
                     'HTTP-Referer': window.location.origin,
-                    'X-Title': 'Preetika AI Humanizer',
+                    'X-Title': 'Scriptive AI Humanizer',
                 },
                 body: JSON.stringify({
                     model: 'openai/gpt-4o-mini',
