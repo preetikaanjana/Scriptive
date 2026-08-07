@@ -20,3 +20,4 @@
 [ 2026-08-06 22:24:36 ] Adjusting line spacing rendering offsets
 [ 2026-08-06 23:05:12 ] fix: resolved eslint parsing issues and synchronized package-lock
 [ 2026-08-07 23:32:15 ] Caching offscreen canvas color tinting maps
+[ 2026-08-07 23:32:17 ] Calibrating baseline jitter thresholds
