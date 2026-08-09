@@ -28,3 +28,4 @@
 [ 2026-08-09 23:11:42 ] Caching offscreen canvas color tinting maps
 [ 2026-08-09 23:11:44 ] Tuning letter spacing horizontal offsets
 [ 2026-08-09 23:11:47 ] Tuning letter spacing horizontal offsets
+[ 2026-08-09 23:11:49 ] Calibrating baseline jitter thresholds
