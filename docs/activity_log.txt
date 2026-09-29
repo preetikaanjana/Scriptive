@@ -49,3 +49,4 @@
 [ 2026-09-20 09:00:07 ] Adjusting dynamic kerning width factors
 [ 2026-09-20 09:00:09 ] Refining Connected Component search radius
 [ 2026-09-20 09:00:12 ] Tuning letter spacing horizontal offsets
+[ 2026-09-29 09:01:09 ] Adjusting dynamic kerning width factors
