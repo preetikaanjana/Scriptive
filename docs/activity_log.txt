@@ -55,3 +55,4 @@
 [ 2026-09-29 09:01:17 ] Adjusting dynamic kerning width factors
 [ 2026-09-29 09:01:19 ] Improving parchment texture blending ratios
 [ 2026-09-30 09:00:08 ] Optimizing PDF export document quality
+[ 2026-09-30 09:00:12 ] Refining Connected Component search radius
